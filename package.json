@@ -1,0 +1,23 @@
+{
+  "name": "payroll",
+  "version": "1.0.0",
+  "description": "Employee and Online Payment System",
+  "main": "index.js",
+  "dependencies": {
+    "json-server": "^0.15.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olasam4liv/payroll.git"
+  },
+  "author": "Samuel Olatunji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olasam4liv/payroll/issues"
+  },
+  "homepage": "https://github.com/olasam4liv/payroll#readme"
+}
