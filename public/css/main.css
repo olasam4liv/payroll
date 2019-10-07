@@ -58,6 +58,22 @@
   color: #b3e8f0;
 }
 
+.nav-item{
+    margin: 3px;
+}
+
+
+.button_1{
+    height: 40px;
+    background: #5761f3;
+    border: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffffff;
+    width: 30%
+}
+
+
 /* showcase */
 #showcase{
     min-height: 700px;
