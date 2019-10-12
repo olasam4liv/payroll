@@ -7,8 +7,7 @@
     <title> Employee and Online Payroll System || Login</title>
     <link rel="stylesheet" href="./bootstrap/bootstrap-4.3.1.min.css">
     <link rel="stylesheet" href="./css/main.css">
-    <script type="text/javascript" src="./js/jquery-3.4.1.min.js"> </script>
-    
+    <script type="text/javascript" src="./js/jquery-3.4.1.min.js"> </script> 
 
 </head>
 <body>
@@ -30,7 +29,7 @@
  
     <div class="container">
         <div class="form-horizontal login-page">
-        <form class="form">
+        <form class="form" id="login-form">
             <h3>Please Login</h3>
             <div class="form-group">
                 <label for="emailAddress"> Email Address</label>
@@ -42,7 +41,7 @@
                 <input id="password" type="password" class="form-control" id="password">
             </div>
         
-            <button  id="login-form" type="submit" class="btn btn-primary">Login</button>
+            <button  id="btnlogin" type="submit" class="btn btn-primary">Login</button>
             <p class="message">Not Yet Register? <a href="register.html">Sign Up</a></p>
         </form>
             </div>
@@ -56,6 +55,7 @@
 
     
     <script type="text/javascript" src="./app.js"> </script>
+    <script type="text/javascript" src="./login.js"> </script>
 
 </body>
 
