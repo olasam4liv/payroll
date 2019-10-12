@@ -19,7 +19,7 @@ $('#register-form').on('submit', function(e){
   let level = ""
   let idCardNo ="";
   let isActive = "Active";
-  let isAdmin = "Yes";
+  let isAdmin = "No";
   let  regDate=  Date().toString();
   let userData = {
       surname: surname,
@@ -50,10 +50,5 @@ $('#register-form').on('submit', function(e){
 });
  
 })
-  
- 
-
-
-
     
-  });
+});
