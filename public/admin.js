@@ -33,5 +33,25 @@ $(document).ready(function(){
     });
 
 
+     //delete
+ function deleteData(){
+    $("button.delete").click( function(e) {
+     e.preventDefault()
+     const id = $(this).val();  
+     $.ajax({
+       url: `http://localhost:3000/employee/${id}`,
+       method: 'DELETE',
+       success: function(e) {
+        let ask = window.confirm(message);    
+         alert("Successfully Deleted");
+         location.reload();
+       },
+       error: function(e) {
+         alert(e);
+         
+       }
+     })
+   })
+   }
 
 })
