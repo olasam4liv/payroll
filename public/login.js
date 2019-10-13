@@ -3,19 +3,28 @@ $(document).ready(function(){
     $('#login-form').on('submit', function(e){
         e.preventDefault();
         let email = $('#email').val();
-        let password = $('#password').val();
-        
+        let password = $('#password').val();        
         $.ajax({
             type: 'GET',
             url: url,                     
             success: function(userData){                
                 for(let user of userData){
-                    if(user.email === email && user.password === password){
-                    console.log('Successfull Logged in', user.surname)
-                    return;
+                    let id = user.id
+                    
+                    //id = parseInt(id);
+                    if(user.email === email && user.password === password && user.isAdmin ==="No" && user.isActive === 'Active'){
+                       console.log(user) 
+                    localStorage.setItem('userId', JSON.stringify(user.id))
+                    window.location.replace('dashboard.html')                   
                     }
+                    if(user.email === email && user.password === password && user.isAdmin ==="Yes" && user.isActive === 'Active'){
+                        console.log(user) 
+                     localStorage.setItem('userId', JSON.stringify(user.id))
+                     window.location.replace('register.html')                   
+                     }
                     else{
-                        console.log('Login Error')
+                        alert('Login Error')
+                        return false;
                     }
                
                 }
