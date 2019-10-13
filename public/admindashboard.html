@@ -33,36 +33,37 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1 id="userID"> </h1>
-    </div>
-         
-        <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="home"  
-                    href="dashboard.html" role="tab" aria-controls="home">Dashboard</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="myprofile.html" role="tab" aria-controls="profile">My Profile</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                    href="update.html" role="tab" aria-controls="profile">Update Record</a>                           
-        
-                </div>
-            </div>
-                <div class="col-8">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="container">
-                            
-            
-            
-                        </div>
-            
-                    </div>
-                </div>
-            </div>
-        </div>
+   
+<div class="container" >
+    <div id="user-id">
 
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist" data-toggle="tooltip" title="Dashboard">
+            <a class="list-group-item list-group-item-action active" id="home"  
+            href="admindashboard.html" role="tab" aria-controls="home">Home</a>
+
+            <a class="list-group-item list-group-item-action " data-toggle="tooltip" title="Click here to View details, Manage Payment and Update User " id="view-record"  
+                href="adminview.html" role="tab" aria-controls="home">View Records</a>
+
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="tooltip" title="View Your Profile"
+                href="adminprofile.html" role="tab" aria-controls="profile">My Profile</a>
+            
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="tooltip" title="Grant Admin Role" 
+            href="adminedit.html" role="tab" aria-controls="settings">Update Profile</a>
+
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="tooltip" title="Grant Admin Role" 
+                href="grantrole.html" role="tab" aria-controls="settings">Grant Role</a>
+        </div>
+        </div>
+        <div class="col-8">
+              <!-- It goes here -->
+        </div>
+    </div>
+</div>
 
        
     <footer class="footer sticky-buttom ">
