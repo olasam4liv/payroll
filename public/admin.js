@@ -20,7 +20,7 @@ $(document).ready(function(){
                 <td>${userData[index].idCardNo}</td>
                 <td> ${userData[index].level}</td>
                 <td>
-                <a href="edit.html?id=${userData[index].id}" data-toggle="tooltip" title="Update user's records. Please becareful" class="btn btn-warning btn-sm">Edit</a> &nbsp;     
+                <a href="adminedituser.html?id=${userData[index].id}" data-toggle="tooltip" title="Update user's records. Please becareful" class="btn btn-warning btn-sm">Edit</a> &nbsp;     
                 <a href="adminviewdetails.html?id=${userData[index].id}" data-toggle="tooltip" title="View details" class="btn btn-primary btn-sm">View</a>  &nbsp;
                  
                 <a href="paysingle.html?id=${userData[index].id}"  data-toggle="tooltip"    title="Pay Salary" class="btn btn-success btn-sm">Pay</a> &nbsp;
@@ -108,6 +108,102 @@ $.ajax({
                 
                       
       </tbody>`);
+
+      //edit   
+      
+      $('#edit-form').append(`
+     <div class="form-group">
+     <label for="staff-idno">Staff ID Number</label>
+     <input type="text"  class="form-control" id="staff-idno"   value="${data.idCardNo}">
+ </div>    
+ <div class="form-group">
+                <label for="level">Level</label>
+                <input type="text"  class="form-control" id="level"
+                    value="${data.level}">
+            </div> 
+     <div class="form-group">
+                <label for="surname" >Surname</label>
+                <input type="text" class="form-control" id="surname" disabled value="${data.surname}">
+      </div>
+
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="first_name" disabled value="${data.firstname}">
+            </div>
+
+            <div class="form-group">
+                <label for="othername">Other Name</label>
+                <input type="text" class="form-control" id="other_name" disabled value="${data.otheranme}">
+            </div>
+
+            <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="email"  class="form-control" id="dob" disabled value="${data.dob}">
+          </div>
+
+          <div class="form-group">
+
+            <label for="email">Email</label>
+                <input type="email"  class="form-control" id="email" disabled value="${data.email}">
+                </div>
+
+          <div class="form-group">
+            <label for="dob">Contact Address</label>
+                <input type="text" disabled class="form-control" id="contact_address"
+                    value="${data.contact_address}">
+              </div>
+             
+            <input type="password" hidden class="form-control" id="password" disabled value="${data.password}">
+           
+          <input type="gender" hidden class="form-control" id="email" disabled value="${data.gender}">
+          
+            
+             
+          <div class="form-group">
+          <label for="acount status">Acount Status</label>
+          <input type="text" disabled class="form-control" id="acountactive"
+              value="${data.isActive}">
+        </div>
+         
+        <input type="text" hidden class="form-control" id="gender"
+            value="${data.gender}">
+
+            <input type="text" hidden class="form-control" id="phonenumber"
+            value="${data.phonenumber}">
+
+        <input type="text" hidden class="form-control" id="isadmin"
+            value="${data.isAdmin}">
+       
+             
+       
+            <div class="form-group">
+            <label for="lastAmountReceived">Registered Date </label>
+            <input type="text" id="lastamountreceived" disabled class="form-control" 
+                value=" ${data.regDate}">
+          </div>
+      
+    
+          <div class="form-group">
+          <label for="lastAmountReceived">Last Amount Received &#8358 </label>
+          <input type="text" id="lastamountreceived" disabled class="form-control" 
+              value=" ${data.lastAmountReceived}">
+        </div>
+   
+        <div class="form-group">
+            <label for="salary">Salary &#8358</label>
+            <input type="text"  class="form-control" id="salary"
+                value=" ${Number(data.salary)}">
+          </div>
+           
+   
+         
+   
+     
+
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            `   
+     ); 
       
     },
 
@@ -115,6 +211,78 @@ $.ajax({
     console.log('Error')
     }
 });
+
+// Edit
+$('#edit-form').submit(function(e) {
+    e.preventDefault();
+  
+              let surname = $('#surname').val();            
+              let firstName = $('#first_name').val();
+              let otherName = $('#other_name').val();
+              let dob = $('#dob').val();
+              let email = $('#email').val();    
+              let contactAddress =$('#contact_address').val();
+              let phonenumber =$('#phonenumber').val();
+              let password = $('#password').val();
+              let gender = $('#gender').val();
+              let salary = $('#salary').val();
+              let lastPaymentDate = Date().toString(); 
+              let lastAmountReceived = $('#lastamountreceived').val();        
+              let level = $('#level').val();;
+              let idCardNo =$('#staff-idno').val();
+              let isActive = 'Yes';
+              let isAdmin = "Yes";
+              let  regDate=  $('#regdate').val();
+  
+              const userData = {
+                surname: surname,
+                firstname: firstName,
+                otheranme: otherName,
+                dob: dob,
+                email: email,
+                contact_address: contactAddress,
+                phonenumber: phonenumber,
+                password: password,
+                gender: gender,
+                salary: salary,
+                lastPaymentDate:lastPaymentDate,
+                lastAmountReceived:lastAmountReceived,
+                level: level,
+                idCardNo:idCardNo,
+                isActive:isActive,
+                isAdmin: isAdmin,
+                regDate: regDate
+              }   
+  
+              $(".error").remove();
+          
+              if (surname.length < 1) {
+                $('#surname').after('<span class="error">Please input a valid surname</span>');
+              }
+              if (firstName.length < 1) {
+                $('#first_name').after('<span class="error">Please input a valid First Name</span>');
+              }
+               
+              if (email.length < 1) {
+                $('#email').after('<span class="error">Please input a valid email</span>');
+                          }
+              if(contactAddress.length < 1){
+                  $('#contact_address').after('<span class="error">Please input a valid email</span>');
+              }      
+              
+  $.ajax({
+    url:url + id,
+    data:userData,
+    type:'PUT',
+    success: function(){
+      alert('Record  Updated')
+      
+    }
+     
+  });
+  window.location.replace('adminview.html')
+  });
+
      //delete
  function deleteData(){
     $("button.delete").click( function(e) {

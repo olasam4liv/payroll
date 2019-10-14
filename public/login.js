@@ -20,12 +20,12 @@ $(document).ready(function(){
                     if(user.email === email && user.password === password && user.isAdmin ==="Yes" && user.isActive === 'Active'){
                         console.log(user) 
                      localStorage.setItem('userId', JSON.stringify(user.id))
-                     window.location.replace('register.html')                   
+                     window.location.replace('admindashboard.html')                   
                      }
-                    else{
-                        alert('Login Error')
-                        return false;
-                    }
+                    // else{
+                    //     alert('Login Error')
+                    //     return false;
+                    // }
                
                 }
                 
