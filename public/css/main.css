@@ -152,8 +152,15 @@
 
 
 
-
-
+/* error */
+.error {
+  color: red;
+  margin-left: 5px;
+}
+ 
+label.error {
+  display: inline;
+}
 
   /* footer */
 footer{
