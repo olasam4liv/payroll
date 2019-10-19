@@ -3,38 +3,32 @@ $(document).ready(function(){
     $('#login-form').on('submit', function(e){
         e.preventDefault();
         let email = $('#email').val();
-        let password = $('#password').val();        
-        $.ajax({
-            type: 'GET',
-            url: url,                     
-            success: function(userData){                
-                for(let user of userData){
-                    let id = user.id
-                    
-                    //id = parseInt(id);
-                    if(user.email === email && user.password === password && user.isAdmin ==="No" && user.isActive === 'Active'){
-                       console.log(user) 
-                    localStorage.setItem('userId', JSON.stringify(user.id))
-                    window.location.replace('dashboard.html')                   
-                    }
-                    if(user.email === email && user.password === password && user.isAdmin ==="Yes" && user.isActive === 'Active'){
-                        console.log(user) 
-                     localStorage.setItem('userId', JSON.stringify(user.id))
-                     window.location.replace('admindashboard.html')                   
-                     }
-                    // else{
-                    //     alert('Login Error')
-                    //     return false;
-                    // }
-               
-                }
-                
-            },
+        let password = $('#password').val(); 
 
-            error: function(){
-            console.log('Error')
-            }
-        });
+    $.get(url, function(userData){
+      
+      for (let object of userData) {        
+        if (object.email === email && object.password === password && object.isAdmin ==="Yes" && object.isActive ==="Active") {          
+          let id = object.id;
+          id = parseInt(id);
+          localStorage.setItem('userID', id);
+           window.location.replace('admindashboard.html');
+          $('#userID').append(`Welcome:  <span >${userID}</span>`)
+          //return;
+        } if(object.email === email && object.password === password && object.isAdmin ==="No" && object.isActive === "Active"){  
+          // let id = object.id;
+          // id = parseInt(id);
+
+          // localStorage.setItem('userID', id);
+           window.location.replace('dashboard.html');
+           return;
+        }
+      }
+      //  return false
+      alert('Invalid email or password')
+  
+      });        
+        
 
     
     });
