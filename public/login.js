@@ -13,8 +13,8 @@ $(document).ready(function(){
           id = parseInt(id);
           localStorage.setItem('userID', id);
            window.location.replace('admindashboard.html');
-          $('#userID').append(`Welcome:  <span >${userID}</span>`)
-          //return;
+        
+          return;
         } if(object.email === email && object.password === password && object.isAdmin ==="No" && object.isActive === "Active"){  
           // let id = object.id;
           // id = parseInt(id);

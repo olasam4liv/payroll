@@ -11,7 +11,17 @@ $(document).ready(function(){
         type: 'GET',
         url: url,                     
         success: function(userData){                
-            for (let index = 0; index < userData.length; index++) {   
+            for (let index = 0; index < userData.length; index++) { 
+              //display user from db to grant role
+             
+              if(userData[index].isAdmin !== 'Yes'){
+                 $('#grantrole').append(`
+              <option value='${userData[index].id}'>${userData[index].email}</option>
+              `);
+              
+              }
+             
+
                 $('#display-user').append(`<tr>
                 <th>${userData[index].id}</th>
                 <td>${userData[index].surname}</td>
@@ -34,7 +44,7 @@ $(document).ready(function(){
         },
 
         error: function(){
-        console.log('Error')
+        alert('Error')
         }
     });
 
@@ -104,10 +114,8 @@ $.ajax({
                 <tr>
                   <th scope="row">Account Status</th>
                   <td colspan="3">${data.isActive}</td>
-                </tr>
-                
-                      
-      </tbody>`);
+                </tr> 
+            </tbody>`);
 
 
       //edit        
@@ -287,22 +295,22 @@ $.ajax({
   
 `);
 
- $('list-group').append(`
- <a class="list-group-item list-group-item-action active" id="home"  
- href="dashboard.html" role="tab" aria-controls="home">Home</a>
-<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
- href="dashboard.html" role="tab" aria-controls="profile">Profile</a>
-<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
- href="" role="tab" aria-controls="messages">Update</a>
-<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
- href="#list-settings" role="tab" aria-controls="settings">Settings</a>
- `);
+    $('list-group').append(`
+    <a class="list-group-item list-group-item-action active" id="home"  
+    href="dashboard.html" role="tab" aria-controls="home">Home</a>
+    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+    href="dashboard.html" role="tab" aria-controls="profile">Profile</a>
+    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+    href="" role="tab" aria-controls="messages">Update</a>
+    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+    href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+    `);
 
       
     },
 
     error: function(){
-    console.log('Error')
+    //alert('Error')
     }
 });
 
@@ -438,6 +446,61 @@ $('#edit-form').submit(function(e) {
   });
   window.location.replace('adminview.html')
   });
+
+
+  // Grant Role
+$('#grantrole-form').submit( function(e) {
+  e.preventDefault();
+ 
+            let surname = $('#surname').val();            
+            let firstName = $('#first_name').val();
+            let otherName = $('#other_name').val();
+            let dob = $('#dob').val();
+            let email = $('#email').val();    
+            let contactAddress =$('#contact_address').val();
+            let phonenumber =$('#phonenumber').val();
+            let password = $('#password').val();
+            let gender = $('#gender').val();
+            let salary = $('#salary').val();
+            let lastPaymentDate = Date().toString(); 
+            let lastAmountReceived = $('#lastamountreceived').val();        
+            let level = $('#level').val();;
+            let idCardNo =$('#staff-idno').val();
+            let isActive = 'Yes';
+            let isAdmin = "Yes";
+            let  regDate=  $('#regdate').val();
+
+            const userData = {
+              surname: surname,
+              firstname: firstName,
+              otheranme: otherName,
+              dob: dob,
+              email: email,
+              contact_address: contactAddress,
+              phonenumber: phonenumber,
+              password: password,
+              gender: gender,
+              salary: salary,
+              lastPaymentDate:lastPaymentDate,
+              lastAmountReceived:lastAmountReceived,
+              level: level,
+              idCardNo:idCardNo,
+              isActive:isActive,
+              isAdmin: isAdmin,
+              regDate: regDate
+            }   
+            
+$.ajax({
+  url:url + id,
+  data:userData,
+  type:'PUT',
+  success: function(){
+    alert('Record  Updated')      
+  }
+   
+});
+window.location.replace('grantrole.html')
+});
 
      //delete
  function deleteData(){
