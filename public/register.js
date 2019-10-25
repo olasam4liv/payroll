@@ -104,43 +104,11 @@ $('#register-form').on('submit', function(e){
   let lastAmountReceived = 0;      
   let level = ""
   let idCardNo ="";
-  let isActive = "Active";
+  let isActive = "Yes";
   let isAdmin = "No";
   let  regDate=  Date().toString();
 
-  // $(".error").remove();
- 
-        
-  // if (userData.surname.length < 1) {
-  //   $('#surname').after('<span class="error">Please input a valid surname</span>');
-    
-  
-  // }
-  // if (firstName.length < 1) {
-  //   $('#first_name').after('<span class="error">Please input a valid First Name</span>');
-  
-    
-  // }
-   
-  // if (email.length < 1) {
-  //   $('#email').after('<span class="error">Please input a valid email</span>');
-   
-    
-  //   }
-  // if(contactAddress.length < 1){
-  //     $('#contact_address').after('<span class="error">Please input a valid email</span>');
-      
-      
-  // }
-  // if (password.length < 8) {
-  //   $('#password').after('<span class="error">Password must be at least 8 characters long</span>');
 
-    
-  // }
-  // if(confirmPassword !== password){
-  //     $('#confirm_password').after('<span class="error">Password Not Matched</span>');
-                 
-  // } 
   let userData = {
       surname: surname,
       firstname: firstName,
@@ -161,7 +129,34 @@ $('#register-form').on('submit', function(e){
       regDate: regDate
   }  
 
+  $(".error").remove();
  
+        
+  if (userData.surname.length < 1) {
+     $('#surname').after('<span class="error">Please input a valid surname</span>');
+   
+  }
+  if (firstName.length < 1) {
+    $('#first_name').after('<span class="error">Please input a valid First Name</span>');
+     
+  }
+   
+  if (email.length < 1) {
+    $('#email').after('<span class="error">Please input a valid email</span>');
+ 
+    }
+  if(contactAddress.length < 1){
+      $('#contact_address').after('<span class="error">Please input a valid email</span>');
+        
+  }
+  if (password.length < 8) {
+    $('#password').after('<span class="error">Password must be at least 8 characters long</span>');
+      
+  }
+  if(confirmPassword !== password){
+      $('#confirm_password').after('<span class="error">Password Not Matched</span>');
+       
+  } 
               $.ajax({
                 type:"POST",
                 url: url,
