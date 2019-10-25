@@ -14,16 +14,22 @@ $(document).ready(function(){
         success: function(userData){                    
             for (let index = 0; index < userData.length; index++) { 
               //display user from db to grant role
-             
+            
               if(userData[index].isAdmin !== 'Yes'){
-                 $('#grantrole').append(`
-              <option value='${userData[index].id}'>${userData[index].email}</option>
+                 $('#grantrole').append(`    
+              <tr>
+              <th>${userData[index].id}</th>
+                <td>${userData[index].email}</td>                
+                <td>
+                <a href="grant.html?id=${userData[index].id}" data-toggle="tooltip" title="You're About to Grant This User An Admin Role. Please Becareful" class="btn btn-warning btn-md">Grant Role</a> &nbsp;     
+                
+                </td>
+                </tr>
               `);
               
-              }
-             
+              }             
 
-                $('#display-user').append(`<tr>
+                $('#display-user').append(`<tr> 
                 <th>${userData[index].id}</th>
                 <td>${userData[index].surname}</td>
                 <td>${userData[index].firstname}</td> 
@@ -36,6 +42,7 @@ $(document).ready(function(){
                  
                 <a href="paysalary.html?id=${userData[index].id}"  data-toggle="tooltip"    title="Pay Salary" class="btn btn-success btn-sm">Pay</a> &nbsp;
                 <button type="button" class="btn btn-danger btn-sm delete" value="${userData[index].id}"  title="Delete Record" >Delete</button>
+                </td>
                 </tr>`); 
                 $('#amount-modal').append(`<input id="password" type="text" class="form-control" value="${userData[index].surname}">  `)
            
@@ -223,7 +230,9 @@ $.ajax({
 $.ajax({
     type: 'GET',
     url: url + id,                     
-    success: function(data){                
+    success: function(data){           
+      
+      //view user details
         $('#view-details').append(` <tbody>
         <tr>
           <th scope="row">Staff ID No:</th>
@@ -288,7 +297,96 @@ $.ajax({
                 </tr> 
             </tbody>`);
 
+ //Grant Role        
+ $('#grant-role-form').append(`
+ <div class="form-group">
+  
+ <input type="text" hidden class="form-control" id="staff-idno"   value="${data.idCardNo}">
+</div>    
+<div class="form-group">
+           
+            <input type="text" hidden class="form-control" id="level"
+                value="${data.level}">
+        </div> 
+ <div class="form-group">
+             
+            <input type="text" hidden class="form-control" id="surname" disabled value="${data.surname}">
+  </div>
 
+        <div class="form-group">
+          
+            <input type="text" hidden class="form-control" id="first_name" disabled value="${data.firstname}">
+        </div>
+
+        <div class="form-group">
+            
+            <input type="text" hidden class="form-control" id="other_name" disabled value="${data.otheranme}">
+        </div>
+
+        <div class="form-group">
+         
+        <input type="email" hidden class="form-control" id="dob" disabled value="${data.dob}">
+      </div>
+
+      <div class="form-group">
+
+         
+            <input type="email" hidden  class="form-control" id="email" disabled value="${data.email}">
+            </div>
+
+      <div class="form-group">
+         
+            <input type="text" hidden disabled class="form-control" id="contact_address"
+                value="${data.contact_address}">
+          </div>
+         
+        <input type="password" hidden class="form-control" id="password" disabled value="${data.password}">
+       
+      <input type="gender" hidden class="form-control" id="gender" disabled value="${data.gender}">
+      
+        
+         
+      <div class="form-group">
+       
+      <input type="text" hidden disabled class="form-control" id="acountactive"
+          value="${data.isActive}">
+    </div>       
+    
+
+        <input type="text" hidden class="form-control" id="phonenumber"
+        value="${data.phonenumber}">
+
+        <div class="form-group">
+        <label for="acount status">Grant Admin Role</label>
+        <select id="isadmin" class="form-control">       
+        <option value="No"> No</option>
+        <option value="Yes"> Yes</option>
+        </select>
+        
+      </div>                 
+   
+        <div class="form-group">
+        
+        <input type="text" hidden id="regdate" disabled class="form-control" 
+            value=" ${data.regDate}">
+      </div>
+  
+
+      <div class="form-group">
+      
+      <input type="text" hidden id="lastamountreceived" disabled class="form-control" 
+          value=" ${data.lastAmountReceived}">
+    </div>
+
+    <div class="form-group">
+        
+        <input type="text" hidden class="form-control" id="salary"
+            value=" ${Number(data.salary)}">
+      </div>       
+
+        </div>
+        <button type="submit" class="btn btn-primary">Grant Admin Role</button>
+        `);
       //edit        
       $('#edit-form').append(`
      <div class="form-group">
@@ -342,8 +440,7 @@ $.ajax({
           <label for="acount status">Acount Status</label>
           <input type="text" disabled class="form-control" id="acountactive"
               value="${data.isActive}">
-        </div>
-         
+        </div>       
         
 
             <input type="text" hidden class="form-control" id="phonenumber"
@@ -685,7 +782,7 @@ $('#edit-form').submit(function(e) {
   });
 
   // Grant Role
-$('#grantrole-form').submit( function(e) {
+$('#grant-role-form').submit( function(e) {
   e.preventDefault();
  
             let surname = $('#surname').val();            
@@ -703,7 +800,7 @@ $('#grantrole-form').submit( function(e) {
             let level = $('#level').val();;
             let idCardNo =$('#staff-idno').val();
             let isActive = 'Yes';
-            let isAdmin = "Yes";
+            let isAdmin = $('#isadmin').val();
             let  regDate=  $('#regdate').val();
 
             const userData = {
@@ -731,7 +828,7 @@ $.ajax({
   data:userData,
   type:'PUT',
   success: function(){
-    alert('Record  Updated')      
+    alert('Role  Granted')      
   }
    
 });
