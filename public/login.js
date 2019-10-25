@@ -8,17 +8,17 @@ $(document).ready(function(){
     $.get(url, function(userData){ 
       for (let object of userData) {        
         if (object.email === email && object.password === password && object.isAdmin ==="Yes" && object.isActive ==="Yes") {          
-          // let id = object.id;
-          // id = parseInt(id);
+          let id = object.id;
+          id = parseInt(id);
           console.log(object.surname)
-          // localStorage.setItem('userID', id);
+           localStorage.setItem('userID', id);
            window.location.replace('admindashboard.html');        
           return;
         }  if(object.email === email && object.password === password && object.isAdmin ==="No" && object.isActive === "Yes"){  
-          // let id = object.id;
-          // id = parseInt(id);
+          let id = object.id;
+          id = parseInt(id);
           console.log(object.id)
-          // localStorage.setItem('userID', id);
+          localStorage.setItem('userID', id);
            window.location.replace('dashboard.html');
           return;
         } 
